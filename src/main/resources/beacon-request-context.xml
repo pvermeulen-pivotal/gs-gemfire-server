@@ -1,0 +1,37 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit-2.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<context:property-placeholder
+		location="classpath*:beacon-request.properties" />
+
+	<!-- enables @Autowired -->
+	<context:annotation-config />
+
+	<bean id="hostInfo" class="io.pivotal.gemfire.server.service.HostInfo">
+		<constructor-arg value="${beacon.request.greenplum.gpfdist.name}" />
+		<constructor-arg value="${beacon.request.greenplum.gpfdist.port}" />
+		<constructor-arg
+			value="${beacon.request.greenplum.gpfdist.directory}" />
+		<constructor-arg
+			value="${beacon.request.greenplum.gpfdist.file.location}" />
+		<constructor-arg
+			value="${beacon.request.greenplum.gpfdist.like.table}" />
+	</bean>
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName"
+			value="${beacon.request.datasource.driverClassName}" />
+		<property name="url" value="${beacon.request.datasource.url}" />
+		<property name="username" value="${beacon.request.datasource.username}" />
+		<property name="password" value="${beacon.request.datasource.password}" />
+	</bean>
+
+</beans>

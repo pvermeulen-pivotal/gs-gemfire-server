@@ -1,0 +1,15 @@
+io\pivotal\gemfire\server\statistics\BeaconRequestStatistics.class
+io\pivotal\gemfire\server\Executor\SerialExecutor$1.class
+io\pivotal\gemfire\server\cache\listeners\BeaconRequestRegionListener.class
+io\pivotal\gemfire\server\cache\writers\BeaconRequestRegionWriter.class
+io\pivotal\gemfire\server\service\ErrorMessage.class
+io\pivotal\gemfire\server\async\listeners\BeaconResponseAsyncListener.class
+io\pivotal\gemfire\server\statistics\BeaconResponseStatistics.class
+io\pivotal\gemfire\server\service\CustomerPromotionService.class
+io\pivotal\gemfire\server\Executor\SerialExecutor.class
+io\pivotal\gemfire\server\service\CustomerPromotionRunnableService.class
+io\pivotal\gemfire\server\async\listeners\BeaconResponseAsyncListener$1.class
+io\pivotal\gemfire\server\async\listeners\BeaconRequestAsyncListener.class
+io\pivotal\gemfire\server\service\CopyService.class
+io\pivotal\gemfire\server\async\listeners\BeaconRequestAsyncListener$1.class
+io\pivotal\gemfire\server\service\HostInfo.class
