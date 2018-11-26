@@ -100,7 +100,7 @@ public class BeaconRequestAsyncListener implements AsyncEventListener {
 			timer.cancel();
 			timer.purge();
 		} catch (Exception e) {
-			// do care do nothing
+			// don't care do nothing
 		}
 
 		StringBuilder strBuilder = new StringBuilder();

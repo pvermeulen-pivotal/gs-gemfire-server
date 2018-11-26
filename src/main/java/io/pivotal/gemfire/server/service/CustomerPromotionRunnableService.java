@@ -24,6 +24,7 @@ public class CustomerPromotionRunnableService implements Runnable {
 		try {
 			CustomerPromotionService service = new CustomerPromotionService();
 			beaconResp = service.getCustomerPromotion(beaconReq);
+			log.info("beacon response: "+ beaconResp.toString());
 			CacheFactory.getAnyInstance().getRegion(REGION).put(beaconResp.getKey(), beaconResp);
 			log.info("Response written to BeaconResponse region");
 		} catch (Exception e) {

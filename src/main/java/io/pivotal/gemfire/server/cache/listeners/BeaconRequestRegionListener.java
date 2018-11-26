@@ -11,7 +11,6 @@ import io.pivotal.gemfire.domain.BeaconRequest;
 import io.pivotal.gemfire.server.Executor.SerialExecutor;
 
 public class BeaconRequestRegionListener implements CacheListener<String, BeaconRequest>, Declarable {
-
 	private final Logger log = LoggerFactory.getLogger(BeaconRequestRegionListener.class);
 
 	public void afterCreate(EntryEvent<String, BeaconRequest> event) {

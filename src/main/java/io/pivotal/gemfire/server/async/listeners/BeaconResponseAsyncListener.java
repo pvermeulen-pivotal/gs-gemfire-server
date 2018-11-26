@@ -58,7 +58,7 @@ public class BeaconResponseAsyncListener implements AsyncEventListener {
 	private String[] mapFields;
 	private boolean initialized = false;
 
-	private BeaconResponseStatistics beconRespStats;
+	private BeaconResponseStatistics beaconRespStats;
 
 	public BeaconResponseAsyncListener() {
 		ctx = new ClassPathXmlApplicationContext("classpath*:gemfire-beacon-response-context.xml");
@@ -66,7 +66,7 @@ public class BeaconResponseAsyncListener implements AsyncEventListener {
 		jdbcTemplate.setExceptionTranslator(new SQLStateSQLExceptionTranslator());
 		this.hostInfo = (HostInfo) ctx.getBean("hostInfo");
 		copyService = new CopyService(jdbcTemplate, hostInfo);
-		beconRespStats = new BeaconResponseStatistics();
+		beaconRespStats = new BeaconResponseStatistics();
 		initialize();
 		delay = (long) CacheFactory.getAnyInstance().getAsyncEventQueue("beacon-response").getBatchTimeInterval();
 	}
@@ -100,7 +100,7 @@ public class BeaconResponseAsyncListener implements AsyncEventListener {
 			timer.cancel();
 			timer.purge();
 		} catch (Exception e) {
-			// do care do nothing
+			// don't care do nothing
 		}
 
 		StringBuilder strBuilder = new StringBuilder();
@@ -111,13 +111,13 @@ public class BeaconResponseAsyncListener implements AsyncEventListener {
 				if (!processEvent(event, strBuilder, dt))
 					return false;
 			}
-			beconRespStats.setCreateGPBatchTime(System.currentTimeMillis() - startTm);
-			beconRespStats.setNumberEntries(events.size());
+			beaconRespStats.setCreateGPBatchTime(System.currentTimeMillis() - startTm);
+			beaconRespStats.setNumberEntries(events.size());
 			statEntryTimer(delay);
 			if (strBuilder.length() > 0) {
 				startTm = System.currentTimeMillis();
 				boolean ret = processExternalTable(strBuilder);
-				beconRespStats.setGreenplumUpdateTime(System.currentTimeMillis() - startTm);
+				beaconRespStats.setGreenplumUpdateTime(System.currentTimeMillis() - startTm);
 				return ret;
 			} else {
 				return true;
@@ -191,7 +191,7 @@ public class BeaconResponseAsyncListener implements AsyncEventListener {
 			lastException = e;
 		}
 		if (errorMessage != null) {
-			beconRespStats.updateGreenplumDatabaseErrors(1);
+			beaconRespStats.updateGreenplumDatabaseErrors(1);
 			writeErrorMessage(errorMessage);
 		}
 		return returnCode;
@@ -232,7 +232,7 @@ public class BeaconResponseAsyncListener implements AsyncEventListener {
 	private void statEntryTimer(long delay) {
 		task = new TimerTask() {
 			public void run() {
-				beconRespStats.setNumberEntries(0);
+				beaconRespStats.setNumberEntries(0);
 			}
 		};
 		timer = new Timer("EntryTimer");
